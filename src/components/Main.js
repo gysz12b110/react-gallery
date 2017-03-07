@@ -10,17 +10,22 @@ var imageDatas=require("../data/imageDatas.json");
 
 //利用自执行函数，将图片名信息专成图片URL路径信息
 imageDatas=(function(imageArr){
-
+    for(var i=0,j=imageArr.length;i<j;i++){
+      var img=imageArr[i];
+      img.imageURL=require("../images/"+img.fileName);
+      imageArr[i]=img;
+    }
+    return imageArr;
 })(imageDatas);
 
 class AppComponent extends React.Component {
   render() {
     return (
-      <div className="index">
-        <img src={yeomanImage} alt="Yeoman Generator" />
-        <div className="notice">Please Add <code>src/components/Main.js</code> to get started!</div>
-      </div>
-    );
+      <section className="stage">
+          <section className="img-sec"></section>
+          <nav className="controller-nav"></nav>
+      </section>
+    )
   }
 }
 
